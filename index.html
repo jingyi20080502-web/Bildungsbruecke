@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bildungsbrücke International | Education Pathway Support</title>
+  <meta name="description" content="German, English and Chinese education pathway support for international families. International schools, IB planning, Canadian university applications and German university pathways." />
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #5f6b7a;
+      --primary: #1f4e5f;
+      --primary-dark: #153946;
+      --accent: #c8a15a;
+      --line: #e4ddd0;
+      --soft: #edf3f5;
+      --shadow: 0 18px 45px rgba(25, 36, 48, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(247, 244, 238, 0.88);
+      border-bottom: 1px solid rgba(228, 221, 208, 0.8);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      color: var(--primary-dark);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), #2e7384);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(31, 78, 95, 0.22);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .language-switch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .language-switch button {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 7px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .language-switch button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .hero {
+      padding: 86px 0 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      background: rgba(31, 78, 95, 0.08);
+      top: -220px;
+      right: -160px;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    h1 {
+      font-size: clamp(2.55rem, 6vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      color: var(--primary-dark);
+      margin-bottom: 24px;
+    }
+
+    .hero p {
+      font-size: 1.16rem;
+      color: var(--muted);
+      max-width: 670px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: var(--primary);
+      box-shadow: 0 12px 30px rgba(31, 78, 95, 0.23);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      color: var(--primary-dark);
+      background: rgba(255,255,255,0.74);
+      border-color: var(--line);
+    }
+
+    .trust-row {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pill {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 13px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.78));
+      border: 1px solid rgba(228, 221, 208, 0.9);
+      border-radius: 30px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .hero-card h2 {
+      font-size: 1.7rem;
+      color: var(--primary-dark);
+      margin-bottom: 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .path-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .path-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 13px;
+      align-items: start;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--soft);
+    }
+
+    .number {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: white;
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .path-item strong {
+      color: var(--primary-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .path-item span {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.06rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 12px 30px rgba(25, 36, 48, 0.04);
+    }
+
+    .card h3 {
+      color: var(--primary-dark);
+      font-size: 1.23rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.025em;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .card ul {
+      margin-top: 15px;
+      padding-left: 20px;
+    }
+
+    .card li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: var(--primary);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight h3,
+    .highlight p,
+    .highlight li {
+      color: white;
+    }
+
+    .highlight::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      right: -54px;
+      bottom: -54px;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .process-step {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .process-step .step {
+      color: var(--accent);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .process-step h3 {
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .about-panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-panel h2 {
+      font-size: 2.1rem;
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+    }
+
+    .about-panel p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .values {
+      display: grid;
+      gap: 14px;
+    }
+
+    .value {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .value strong {
+      display: block;
+      color: var(--primary-dark);
+      margin-bottom: 5px;
+      font-size: 1.05rem;
+    }
+
+    .value span {
+      color: var(--muted);
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--primary), #2f7181);
+      color: white;
+      border-radius: 32px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 28px;
+      box-shadow: 0 24px 60px rgba(31, 78, 95, 0.22);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      max-width: 700px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .contact-details {
+      margin-top: 24px;
+      display: grid;
+      gap: 8px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .contact-box .btn {
+      background: white;
+      color: var(--primary-dark);
+      white-space: nowrap;
+    }
+
+    .note {
+      margin-top: 22px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.72);
+    }
+
+    footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    [data-lang="zh"] {
+      display: none;
+    }
+
+    body.zh [data-lang="en"] {
+      display: none;
+    }
+
+    body.zh [data-lang="zh"] {
+      display: initial;
+    }
+
+    body.zh div[data-lang="zh"],
+    body.zh section[data-lang="zh"],
+    body.zh span[data-lang="zh"],
+    body.zh p[data-lang="zh"],
+    body.zh h1[data-lang="zh"],
+    body.zh h2[data-lang="zh"],
+    body.zh h3[data-lang="zh"],
+    body.zh li[data-lang="zh"] {
+      display: revert;
+    }
+
+    body.zh [data-lang="en"].cards,
+    body.zh [data-lang="en"].process,
+    body.zh [data-lang="en"].about-grid {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .process {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .cards,
+      .process {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .contact-box {
+        padding: 26px;
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .brand span:last-child {
+        font-size: 0.94rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Bildungsbrücke International Home">
+        <span class="brand-mark">B</span>
+        <span>Bildungsbrücke International</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#services" data-lang="en">Services</a><a href="#services" data-lang="zh">服务</a></li>
+          <li><a href="#process" data-lang="en">Process</a><a href="#process" data-lang="zh">流程</a></li>
+          <li><a href="#about" data-lang="en">About</a><a href="#about" data-lang="zh">关于</a></li>
+          <li><a href="#contact" data-lang="en">Contact</a><a href="#contact" data-lang="zh">联系</a></li>
+        </ul>
+      </nav>
+      <div class="language-switch" aria-label="Language switch">
+        <button id="enBtn" class="active" type="button">EN</button>
+        <button id="zhBtn" type="button">中文</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow" data-lang="en">Education Pathway Support</div>
+          <div class="eyebrow" data-lang="zh">教育路径规划支持</div>
+
+          <h1 data-lang="en">Clear education pathways across languages and systems.</h1>
+          <h1 data-lang="zh">跨语言、跨体系，让教育选择更清晰。</h1>
+
+          <p data-lang="en">Bildungsbrücke International supports international and Chinese-speaking families with international school choices, IB planning, Canadian university applications and German university pathway research.</p>
+          <p data-lang="zh">Bildungsbrücke International｜教育桥国际，为国际家庭及中文家庭提供国际学校选择、IB课程规划、加拿大大学申请和德国大学路径研究支持。</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact" data-lang="en">Request a consultation</a>
+            <a class="btn btn-primary" href="#contact" data-lang="zh">预约咨询</a>
+            <a class="btn btn-secondary" href="#services" data-lang="en">View services</a>
+            <a class="btn btn-secondary" href="#services" data-lang="zh">查看服务</a>
+          </div>
+
+          <div class="trust-row">
+            <span class="pill" data-lang="en">German · English · Chinese</span>
+            <span class="pill" data-lang="zh">德语 · 英语 · 中文</span>
+            <span class="pill" data-lang="en">International school experience</span>
+            <span class="pill" data-lang="zh">国际学校背景</span>
+            <span class="pill" data-lang="en">Canada & Germany pathway support</span>
+            <span class="pill" data-lang="zh">加拿大与德国路径支持</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Pathway overview">
+          <h2 data-lang="en">From confusion to a clear plan</h2>
+          <h2 data-lang="zh">从混乱信息到清晰规划</h2>
+          <p data-lang="en">We help families turn scattered school and university information into a structured next-step plan.</p>
+          <p data-lang="zh">我们帮助家庭把分散的学校与大学信息整理成清晰、可执行的下一步方案。</p>
+          <div class="path-list">
+            <div class="path-item">
+              <div class="number">1</div>
+              <div><strong data-lang="en">Understand</strong><strong data-lang="zh">理解现状</strong><span data-lang="en">Current school system, goals, constraints and concerns.</span><span data-lang="zh">梳理当前学校体系、目标、限制条件与主要问题。</span></div>
+            </div>
+            <div class="path-item">
+              <div class="number">2</div>
+              <div><strong data-lang="en">Compare</strong><strong data-lang="zh">比较路径</strong><span data-lang="en">Options across IB, Canada, Germany and international routes.</span><span data-lang="zh">比较 IB、加拿大、德国及其他国际路径的优劣。</span></div>
+            </div>
+            <div class="path-item">
+              <div class="number">3</div>
+              <div><strong data-lang="en">Plan</strong><strong data-lang="zh">制定计划</strong><span data-lang="en">Timeline, requirements, communication and next steps.</span><span data-lang="zh">形成时间线、申请要求、沟通准备和下一步安排。</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about-me">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <h2 data-lang="en">About Jingyi Chen</h2>
+          <h2 data-lang="zh">关于陈婧怡</h2>
+          <p data-lang="en">My name is Jingyi Chen. I grew up in Germany from the age of two and experienced the German education system from kindergarten onwards before later transferring to an international school for high school and completing the IB Diploma pathway.</p>
+          <p data-lang="zh">我是陈婧怡，从两岁起在德国长大，亲身经历了从幼儿园开始的德国教育体系，之后在高中阶段转入国际学校，并学习 IB 文凭课程路径。</p>
+          <p data-lang="en">Because of this background, I understand both local European school systems and international curricula from a student's and family's perspective. I can support families whose children are studying in different systems, including IB, A-Level, AP, international high school diplomas, and regular national high school routes.</p>
+          <p data-lang="zh">因此，我能够从学生和家庭的角度理解欧洲本地教育体系以及国际课程体系。我可以支持孩子正在学习不同课程体系的家庭，包括 IB、A-Level、AP、国际高中毕业文凭以及普通国家高中体系。</p>
+          <p data-lang="en">I am especially familiar with education pathways in Europe, particularly Germany, and I help families compare realistic next steps across Germany, Canada and other international options.</p>
+          <p data-lang="zh">我尤其熟悉欧洲教育路径，特别是德国体系，并帮助家庭比较德国、加拿大及其他国际方向中更现实、合适的下一步选择。</p>
+        </div>
+
+        <div class="values">
+          <div class="value">
+            <strong data-lang="en">Support for different school systems</strong>
+            <strong data-lang="zh">支持不同课程体系</strong>
+            <span data-lang="en">IB, A-Level, AP, international high school diplomas and regular high school pathways can all lead to different university options. I help families understand what each route may allow.</span>
+            <span data-lang="zh">IB、A-Level、AP、国际高中毕业文凭和普通高中路径都可能通向不同大学选择。我帮助家庭理解每条路径可能对应的机会。</span>
+          </div>
+          <div class="value">
+            <strong data-lang="en">Alternative and foundation pathways</strong>
+            <strong data-lang="zh">替代路径与预科方案</strong>
+            <span data-lang="en">If a student's current grades or school record do not fully reflect their potential, I can help explore more realistic alternatives such as foundation programmes, pathway programmes, retake options or different country choices.</span>
+            <span data-lang="zh">如果学生目前的成绩或高中记录不能完全体现真实潜力，我可以协助了解更现实的替代方案，例如预科课程、桥梁课程、重考选择或不同国家的升学路径。</span>
+          </div>
+          <div class="value">
+            <strong data-lang="en">European and German school knowledge</strong>
+            <strong data-lang="zh">欧洲与德国教育体系理解</strong>
+            <span data-lang="en">Having grown up in Germany, I understand the local school environment, education culture and the differences between German and international school systems.</span>
+            <span data-lang="zh">由于我在德国成长，我了解德国本地学校环境、教育文化，以及德国学校体系与国际学校体系之间的差异。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-lang="en">Practical support for international education decisions.</h2>
+          <h2 data-lang="zh">面向国际教育选择的实用型支持。</h2>
+          <p data-lang="en">Designed for families who need clear explanations, realistic options and organised communication across German, English and Chinese.</p>
+          <p data-lang="zh">适合需要用德语、英语和中文理解信息、比较选择并整理申请沟通的家庭。</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3 data-lang="en">Starter Consultation</h3>
+            <h3 data-lang="zh">初步路径咨询</h3>
+            <p data-lang="en">A focused online consultation to clarify your current situation and possible education routes.</p>
+            <p data-lang="zh">通过一次重点明确的线上咨询，帮助家庭梳理当前情况与可行教育路径。</p>
+            <ul>
+              <li data-lang="en">International school pathway explanation</li>
+              <li data-lang="zh">国际学校路径说明</li>
+              <li data-lang="en">IB subject choice discussion</li>
+              <li data-lang="zh">IB 选课方向讨论</li>
+              <li data-lang="en">Canada, Germany or UK route overview</li>
+              <li data-lang="zh">加拿大、德国或英国路径概览</li>
+            </ul>
+          </article>
+
+          <article class="card highlight">
+            <h3 data-lang="en">School & University Research</h3>
+            <h3 data-lang="zh">学校与大学研究</h3>
+            <p data-lang="en">A structured comparison of suitable schools, universities or programmes based on your goals.</p>
+            <p data-lang="zh">根据家庭目标，对合适的学校、大学或专业项目进行结构化比较。</p>
+            <ul>
+              <li data-lang="en">Requirements and deadlines</li>
+              <li data-lang="zh">申请要求与截止日期</li>
+              <li data-lang="en">Tuition and location comparison</li>
+              <li data-lang="zh">学费与地理位置比较</li>
+              <li data-lang="en">Strengths, risks and next steps</li>
+              <li data-lang="zh">优势、风险与下一步建议</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3 data-lang="en">Application Communication Support</h3>
+            <h3 data-lang="zh">申请沟通支持</h3>
+            <p data-lang="en">Support with organising application communication, documents and timelines.</p>
+            <p data-lang="zh">协助整理申请相关沟通、材料要求和时间安排。</p>
+            <ul>
+              <li data-lang="en">Email drafting to schools or universities</li>
+              <li data-lang="zh">学校或大学邮件撰写</li>
+              <li data-lang="en">Document checklist preparation</li>
+              <li data-lang="zh">申请材料清单整理</li>
+              <li data-lang="en">Chinese, German and English explanation</li>
+              <li data-lang="zh">中德英信息解释与沟通</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-header">
+          <h2 data-lang="en">A calm, structured process.</h2>
+          <h2 data-lang="zh">清晰、稳妥、有结构的服务流程。</h2>
+          <p data-lang="en">The goal is not to overwhelm families with more information, but to organise the decision into clear steps.</p>
+          <p data-lang="zh">我们的目标不是给家庭增加更多信息负担，而是把复杂选择整理成清晰步骤。</p>
+        </div>
+
+        <div class="process">
+          <div class="process-step">
+            <div class="step">01</div>
+            <h3 data-lang="en">Initial request</h3>
+            <h3 data-lang="zh">提交需求</h3>
+            <p data-lang="en">You share the student's current grade, school system, target countries and main concerns.</p>
+            <p data-lang="zh">您提供学生当前年级、学校体系、目标国家和主要问题。</p>
+          </div>
+          <div class="process-step">
+            <div class="step">02</div>
+            <h3 data-lang="en">Consultation</h3>
+            <h3 data-lang="zh">线上沟通</h3>
+            <p data-lang="en">We discuss possible routes and identify what information is still missing.</p>
+            <p data-lang="zh">我们讨论可行路径，并明确还需要补充哪些信息。</p>
+          </div>
+          <div class="process-step">
+            <div class="step">03</div>
+            <h3 data-lang="en">Research & organisation</h3>
+            <h3 data-lang="zh">研究与整理</h3>
+            <p data-lang="en">Relevant requirements, deadlines and options are organised into a clear overview.</p>
+            <p data-lang="zh">将相关要求、截止日期和选择整理成清晰对比。</p>
+          </div>
+          <div class="process-step">
+            <div class="step">04</div>
+            <h3 data-lang="en">Next-step plan</h3>
+            <h3 data-lang="zh">下一步计划</h3>
+            <p data-lang="en">You receive a practical summary with recommended next actions.</p>
+            <p data-lang="zh">您将获得一份实用总结和下一步行动建议。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-panel">
+          <h2 data-lang="en">About Bildungsbrücke International</h2>
+          <h2 data-lang="zh">关于教育桥国际</h2>
+          <p data-lang="en">Bildungsbrücke International was created to support families who need clearer guidance across different education systems and languages.</p>
+          <p data-lang="zh">教育桥国际旨在帮助需要跨教育体系、跨语言理解信息的家庭做出更清晰的升学选择。</p>
+          <p data-lang="en">The service is built on direct international school experience, familiarity with the IB system, and first-hand knowledge of Canadian university applications.</p>
+          <p data-lang="zh">服务基础来自国际学校经历、对 IB 体系的理解，以及加拿大大学申请的真实经验。</p>
+          <p data-lang="en">Support is available in German, English and Chinese.</p>
+          <p data-lang="zh">服务可使用德语、英语和中文进行。</p>
+        </div>
+
+        <div class="values">
+          <div class="value">
+            <strong data-lang="en">Clear explanations</strong>
+            <strong data-lang="zh">解释清楚</strong>
+            <span data-lang="en">Education systems can be confusing. We translate requirements into practical language families can understand.</span>
+            <span data-lang="zh">复杂的教育体系需要用家长能理解的方式解释，而不是堆砌信息。</span>
+          </div>
+          <div class="value">
+            <strong data-lang="en">Realistic planning</strong>
+            <strong data-lang="zh">规划现实</strong>
+            <span data-lang="en">We focus on suitable options, risk awareness and realistic next steps rather than unrealistic promises.</span>
+            <span data-lang="zh">我们关注合适选择、风险意识和可执行步骤，而不是不现实的承诺。</span>
+          </div>
+          <div class="value">
+            <strong data-lang="en">Cross-cultural communication</strong>
+            <strong data-lang="zh">跨文化沟通</strong>
+            <span data-lang="en">Families often need support not only with information, but also with communication between schools, parents and institutions.</span>
+            <span data-lang="zh">很多家庭需要的不只是信息，还包括学校、家长和机构之间的沟通支持。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2 data-lang="en">Start with a clear first conversation.</h2>
+            <h2 data-lang="zh">从一次清晰的初步沟通开始。</h2>
+            <p data-lang="en">Share your situation and the type of support you are looking for. A short consultation can help clarify whether the service is suitable for your family.</p>
+            <p data-lang="zh">请简单说明您的情况和所需支持。一次初步沟通可以帮助判断该服务是否适合您的家庭。</p>
+            <div class="contact-details">
+              <span>Email: jingyi20080502@gmail.com</span>
+              <span>WeChat: angelaqq2008</span>
+              <span>WhatsApp: +49 176 60394667</span>
+            </div>
+            <p class="note" data-lang="en">Important: We provide education pathway support, research, document organisation and communication assistance. We do not guarantee admission and do not provide legal, visa, tax or immigration advice.</p>
+            <p class="note" data-lang="zh">重要说明：我们提供教育路径支持、信息研究、材料整理和沟通协助。不保证录取结果，也不提供法律、签证、税务或移民建议。</p>
+          </div>
+          <a class="btn" href="mailto:jingyi20080502@gmail.com" data-lang="en">Email us</a>
+          <a class="btn" href="mailto:jingyi20080502@gmail.com" data-lang="zh">发送邮件</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Bildungsbrücke International. All rights reserved.</span>
+      <span data-lang="en">German · English · Chinese Education Pathway Support</span>
+      <span data-lang="zh">德语 · 英语 · 中文教育路径规划支持</span>
+    </div>
+  </footer>
+
+  <script>
+    const enBtn = document.getElementById('enBtn');
+    const zhBtn = document.getElementById('zhBtn');
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    function setLanguage(lang) {
+      if (lang === 'zh') {
+        document.body.classList.add('zh');
+        zhBtn.classList.add('active');
+        enBtn.classList.remove('active');
+        document.documentElement.lang = 'zh';
+      } else {
+        document.body.classList.remove('zh');
+        enBtn.classList.add('active');
+        zhBtn.classList.remove('active');
+        document.documentElement.lang = 'en';
+      }
+      localStorage.setItem('siteLang', lang);
+    }
+
+    enBtn.addEventListener('click', () => setLanguage('en'));
+    zhBtn.addEventListener('click', () => setLanguage('zh'));
+
+    const savedLang = localStorage.getItem('siteLang');
+    if (savedLang === 'zh') setLanguage('zh');
+  </script>
+</body>
+</html>
